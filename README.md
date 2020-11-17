@@ -6,5 +6,5 @@ Course website: https://missing.csail.mit.edu/2020/
 Lecture 1:  Course overview + the shell
 
 ## doing
-Lecture 2: Shell Tools and Scripting (almost done)
+Lecture 2: Shell Tools and Scripting (almost done)\
 Lecture 3: Editor (Vim)
