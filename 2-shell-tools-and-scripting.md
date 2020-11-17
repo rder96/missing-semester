@@ -100,3 +100,52 @@ ls -lahtG
    > -G: colorized output
 
 2. Write bash functions marco and polo that do the following. Whenever you execute marco the current working directory should be saved in some manner, then when you execute polo, no matter what directory you are in, polo should cd you back to the directory where you executed marco. For ease of debugging you can write the code in a file marco.sh and (re)load the definitions to your shell by executing source marco.sh.
+```
+#!/bin/bash
+marco () {
+        echo "current working directory is $(pwd)"
+        curr="$(pwd)"
+}
+polo () {
+        cd $curr
+}
+```
+> variables in shell has dynamic scope - need local decl ```local var='inital value'```
+> remember to use $curr to get the value of curr
+
+3. Say you have a command that fails rarely. In order to debug it you need to capture its output but it can be time consuming to get a failure run. Write a bash script that runs the following script until it fails and captures its standard output and error streams to files and prints everything at the end. Bonus points if you can also report how many runs it took for the script to fail.
+   ```
+   #!/usr/bin/env bash
+    
+   n=$(( RANDOM % 100 ))
+
+   if [[ n -eq 42 ]]; then
+    echo "Something went wrong"
+    >&2 echo "The error was using magic numbers"
+    exit 1
+   fi
+
+   echo "Everything went according to plan"
+   ```
+```
+#!/bin/bash
+# reference: https://www.codegrepper.com/code-examples/shell/How+to+call+one+shell+script+from+another+shell+script%3F
+COUNT=0
+> TMPFILE
+while :; do
+        ./script.sh >> TMPFILE 2>&1
+        if [[ "$?" -ne 0 ]]; then
+                break
+        fi
+        COUNT=$((COUNT+1))
+done
+
+cat TMPFILE
+echo "Total runs needed is $COUNT"
+```
+> create a new script named script.sh and copy the above script into it using vim
+> create a temp file in bash using ```TMPFILE=$(mktemp)``` source: https://www.pixelstech.net/article/1577768087-Create-temp-file-in-Bash-using-mktemp-and-trap \
+> : always return true - can be used to do infinite while loop ```while :; do .... done```
+> redirect stdout and stderr to file: https://tldp.org/LDP/abs/html/io-redirection.html 2(stderr) is redirected to where 1 is redirected to.
+> NOTE: Remember by default new script are created with only read and write permission. So, use chmod u+x script.sh
+> used ```> TMPFILE``` to empty the content of TMPFILE if it exists, ```echo -n FILENAME``` doesn't automatically work on zsh https://stackoverflow.com/questions/42344265/echo-n-is-not-working-in-zsh
