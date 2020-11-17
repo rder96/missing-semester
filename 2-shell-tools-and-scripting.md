@@ -143,9 +143,9 @@ done
 cat TMPFILE
 echo "Total runs needed is $COUNT"
 ```
-> create a new script named script.sh and copy the above script into it using vim
-> create a temp file in bash using ```TMPFILE=$(mktemp)``` source: https://www.pixelstech.net/article/1577768087-Create-temp-file-in-Bash-using-mktemp-and-trap \
-> : always return true - can be used to do infinite while loop ```while :; do .... done```
-> redirect stdout and stderr to file: https://tldp.org/LDP/abs/html/io-redirection.html 2(stderr) is redirected to where 1 is redirected to.
-> NOTE: Remember by default new script are created with only read and write permission. So, use chmod u+x script.sh
-> used ```> TMPFILE``` to empty the content of TMPFILE if it exists, ```echo -n FILENAME``` doesn't automatically work on zsh https://stackoverflow.com/questions/42344265/echo-n-is-not-working-in-zsh
+> - create a new script named script.sh and copy the above script into it using vim
+> - create a temp file in bash using ```TMPFILE=$(mktemp)``` https://www.pixelstech.net/article/1577768087-Create-temp-file-in-Bash-using-mktemp-and-trap
+> - : always return true - can be used to do infinite while loop ```while :; do .... done```
+> - redirect stdout and stderr to file: https://tldp.org/LDP/abs/html/io-redirection.html 2(stderr) is redirected to where 1 is redirected to.
+> - NOTE: Remember by default new script are created with only read and write permission. So, use chmod u+x script.sh
+> - used ```> TMPFILE``` to empty the content of TMPFILE if it exists, ```echo -n FILENAME``` doesn't automatically work on zsh https://stackoverflow.com/questions/42344265/echo-n-is-not-working-in-zsh
