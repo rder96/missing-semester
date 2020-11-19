@@ -61,7 +61,7 @@
 - i (inside)
   - [something] - ci[ (change inside brackets)
   - (something) - di( (delete inside parenthesis)
-- to move back-forth matching parenthesis etc -> %
+  - to move back-forth matching parenthesis etc -> %
 
 6. others
 - / to search
@@ -74,3 +74,7 @@
 - macros
 
 # Exercises
+1. Complete vimtutor. Note: it looks best in a 80x24 (80 columns by 24 lines) terminal window.
+```
+vimtutor
+```
